@@ -55,21 +55,37 @@ const gameFlow = (() => {
         [0,4,8],
         [2,4,6]
     ]
+    const tieChecker = () => {
+        for (const i of gameBoard.game){
+            if(i ===''){
+                return false;
+            }
+        }
+        return true
+    }
     const winChecker = () => {
+       
         for (const win of winningPatterns){
             const winnerX = win.every(elem => displayController.markerX.includes(elem)); 
             const winnerO = win.every(elem => displayController.markerO.includes(elem));
 
             if(winnerX){
-                winnerContainer.textContent = 'Player 1 wins'
+                winnerContainer.textContent = 'Player 1 wins';
             }
             else if(winnerO){
                 winnerContainer.textContent = 'Player 2 wins'
+            }
+            else if(tieChecker()){
+                winnerContainer.textContent = "It's a tie"
             }
         }
     }
     displayController.displayContainer.addEventListener('click', winChecker)
 })();
+
+const Computer = () => {
+
+}
 
 displayController.createBoard()
 
