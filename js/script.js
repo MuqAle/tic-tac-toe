@@ -38,6 +38,7 @@ const displayController = (() => {
             e.target.classList.remove('empty_box');
             Player1.turn = false;
             Player2.turn = true;
+            console.log(markerX)
         }else if (e.target.classList[0] === 'display_box' && Player2.turn === true && e.target.classList[1] === 'empty_box'){
             gameBoard.game.splice(index,1,Player2.marker)
             e.target.childNodes[0].src = './imgs/heart_icon.png'
@@ -47,6 +48,7 @@ const displayController = (() => {
             e.target.classList.remove('empty_box');
             Player2.turn = false;
             Player1.turn = true;
+            console.log(markerO)
         }
     };
 
@@ -69,7 +71,7 @@ const displayController = (() => {
     resetBtn.style.display = 'none'
     displayContainer.addEventListener('click', addMarker);
     resetBtn.addEventListener('click',resetBoard)
-    return {createBoard,markerX,markerO,displayContainer, resetBtn};
+    return {createBoard, markerX, markerO, displayContainer, resetBtn};
 })();
 
 const gameFlow = (() => {
@@ -84,14 +86,6 @@ const gameFlow = (() => {
         [0,4,8],
         [2,4,6]
     ]
-    const tieChecker = () => {
-        for (const i of gameBoard.game){
-            if(i ===''){
-                return false;
-            }
-        }
-        return true;
-    };
 
     const removeClass = () => {
         for (const child of displayController.displayContainer.childNodes){
@@ -108,6 +102,7 @@ const gameFlow = (() => {
             if(winnerX){
                 winnerContainer.textContent = 'Player 1 wins!';
                 removeClass()
+                console.log(winnerX)
                 displayController.resetBtn.style.display = 'flex'
             }
             else if(winnerO){
@@ -115,13 +110,23 @@ const gameFlow = (() => {
                 removeClass()
                 displayController.resetBtn.style.display = 'flex'
             }
-            else if(tieChecker() && (!winnerX || !winnerO)){
+            else if(tieChecker()){
                 winnerContainer.textContent = "It's a tie!"
                 removeClass()
                 displayController.resetBtn.style.display = 'flex'
+                console.log(winnerX)
             }
         }
     }
+
+    const tieChecker = () => {
+        for (const i of gameBoard.game){
+            if(i === ''){
+                return false;
+            }
+        }
+        return true;
+    };
 
     displayController.resetBtn.addEventListener('click',() => {winnerContainer.textContent =''})
     displayController.displayContainer.addEventListener('click', winChecker)
