@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    font-family: 'Comfortaa', cursive;
+    color: rgb(251, 219, 155);
+}
+
+.display_board{
+    margin: 20px;
+    display: grid;
+    width: 450px;
+    height: 450px;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+
+.display_box{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.display_board div:nth-child(2),
+.display_board div:nth-child(5),
+.display_board div:nth-child(8){
+    border-left: 5px solid lightblue;
+    border-right: 5px solid lightblue;
+}
+
+.display_board div:nth-child(4),
+.display_board div:nth-child(5),
+.display_board div:nth-child(6){
+    border-top: 5px solid lightblue;
+    border-bottom: 5px solid lightblue;
+}
+
+.x_marker > img{
+    height: 98px;
+    width: 98px;
+    justify-content: center;
+    align-self: center;
+}
+
+.o_marker > img{
+    width: 124px;
+    height: 124px;
+    justify-content: center;
+    align-self: center;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    gap: 30px;
+}
+
+.winner{
+    font-family: 'Comfortaa', cursive;
+    font-size: 30px;
+    color: rgb(120, 214, 120);
+}
+
+.reset_btn{
+    border: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: rgb(252, 187, 187);
+    font-family: 'Comfortaa', cursive;
+}
+
+
+
+
